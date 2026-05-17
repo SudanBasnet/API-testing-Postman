@@ -2,6 +2,8 @@ import express from "express";
 
 const app = express();
 const PORT = 8000;
+//!make post data available in req.body
+app.use(express.json());
 let fakeDB = [
   {
     id: 1,
@@ -11,16 +13,6 @@ let fakeDB = [
   {
     id: 2,
     fName: "sudan2",
-    lname: "basnet",
-  },
-  {
-    id: 3,
-    fName: "sudan3",
-    lname: "basnet",
-  },
-  {
-    id: 4,
-    fName: "sudan4",
     lname: "basnet",
   },
 ];
@@ -46,15 +38,16 @@ app.get("/", (req, res) => {
 
 //!post method
 app.post("/", (req, res) => {
+  fakeDB.push(req.body);
   console.log("server is hit");
   res.json({
-    message: "to do post method",
+    message: "New user is added",
   });
 });
 
 //!put method
 app.put("/", (req, res) => {
-  console.log("server is hit");
+  console.log(req.body, "server is hit for put");
   res.json({
     message: "to do put method",
   });
@@ -62,8 +55,8 @@ app.put("/", (req, res) => {
 
 //!delete method
 app.delete("/", (req, res) => {
-  console.log("server is hit");
+  console.log(req.body, "server is hit for delete");
   res.json({
-    message: "to do deletemethod",
+    message: "to do delete method",
   });
 });
