@@ -27,9 +27,9 @@ app.listen(PORT, (error) => {
 
 //!get method
 app.get("/", (req, res) => {
-  //   console.log({ ...req.query });
+  console.log(req.query);
   //   fakeDB.push(req.query);
-  console.log("server is hit");
+  console.log("server is hit for get method");
   res.json({
     message: "to do get method",
     users: fakeDB,
@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
 
 //!post method
 app.post("/", (req, res) => {
-  fakeDB.push(req.body);
+  //   fakeDB.push(req.body);
   console.log("server is hit");
   res.json({
     message: "New user is added",
@@ -47,15 +47,15 @@ app.post("/", (req, res) => {
 
 //!put method
 app.put("/", (req, res) => {
-  console.log(req.body, "server is hit for put");
+  console.log(req.body, req.headers.authorization, "server is hit for put");
   res.json({
     message: "to do put method",
   });
 });
 
 //!delete method
-app.delete("/", (req, res) => {
-  console.log(req.body, "server is hit for delete");
+app.delete("/:id", (req, res) => {
+  console.log(req.params, "server is hit for delete");
   res.json({
     message: "to do delete method",
   });
